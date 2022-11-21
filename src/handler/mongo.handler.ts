@@ -30,7 +30,9 @@ export class MongoHandler {
   update = async (customer: ICustomerEntity): Promise<ICustomerEntity> => {
     customer.updatedAt =new Date();
     logger.debug(new LogData("MongoHandler",{customer}), `update`);
-    return await Customer.findByIdAndUpdate({ _id: customer["_id"]}, customer);
+    const response = await Customer.findByIdAndUpdate({ _id: customer["_id"]}, customer);
+    if(!response) throw new BusinessError(`Customer with id=${customer["_id"]} not foud`);
+    return response;
   };
 
 }

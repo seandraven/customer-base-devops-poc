@@ -7,6 +7,7 @@ import UpdateController from "../controllers/update.controller";
 import { createSchema } from "./schemas/create.schema";
 import { deleteSchema } from "./schemas/delete.schema";
 import { infoSchema } from "./schemas/info.schema";
+import { updateSchema } from "./schemas/update.schema";
 
 export default class PrincipalRoutes {
   private createController: CreateController;
@@ -46,7 +47,7 @@ export default class PrincipalRoutes {
     );
     server.patch(
       "/customer.update",
-      { schema: infoSchema },
+      { schema: updateSchema },
       this.updateController.handle
     );
   }

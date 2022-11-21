@@ -2,20 +2,16 @@ import { schemaResponse } from "./response.schema";
 import { customerSchema } from "./customer.schema";
 import { CustomerStatus, CustomerType, Scoretatus, SubscriptionStatus } from "../../../domain/enum/customer.enum";
 
-export const createSchema = {
+export const updateSchema = {
   body: {
     type: "object",
     required: [
-      "keoId",
-      "name",
-      "nidType",
-      "nid",
-      "status",
-      "type",
-      "locations",
-      "subscriptions",
+      "_id",
     ],
     properties: {
+      _id: {
+        type: "string",
+      },
       keoId: {
         type: "string",
       },

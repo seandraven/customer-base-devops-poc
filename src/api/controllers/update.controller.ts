@@ -14,7 +14,7 @@ export default class UpdateController extends BaseController {
       async () => {
 
         const customer = <ICustomerEntity>req.body;
-        const result = await handler.create(customer);
+        const result = await handler.update(customer);
 
         const response = new Result<ICustomerEntity>();
         response.setResponse(result, 201);
