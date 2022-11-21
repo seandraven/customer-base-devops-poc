@@ -3,17 +3,12 @@ import { customerSchema } from "./customer.schema";
 
 export const infoSchema = {
   query: {
-    type: "object",
+    type: 'object',
+    required: ['id'],
     properties: {
-      nidType: {
-        type: "string",
+      id: {
+        type: 'string',
       },
-      nid: {
-        type: "string",
-      },
-      keoId: {
-        type: "string",
-      }
     },
   },
   response: {
