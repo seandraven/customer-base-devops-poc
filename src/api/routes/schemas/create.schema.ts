@@ -1,0 +1,94 @@
+import { schemaResponse } from "./response.schema";
+import { customerSchema } from "./customer.schema";
+import { CustomerStatus, CustomerType, Scoretatus, SubscriptionStatus } from "../../../domain/enum/customer.enum";
+
+export const createSchema = {
+  body: {
+    type: "object",
+    required: [
+      "keoId",
+      "name",
+      "nidType",
+      "nid",
+      "status",
+      "type",
+      "locations",
+      "subscriptions",
+    ],
+    properties: {
+      keoId: {
+        type: "string",
+      },
+      name: {
+        type: "string",
+      },
+      nidType: {
+        type: "string",
+      },
+      nid: {
+        type: "string",
+      },
+      status: {
+        type: "string",
+        enum: Object.values(CustomerStatus),
+      },
+      type: {
+        type: "string",
+        enum: Object.values(CustomerType),
+      },
+      locations: {
+        type: "array",
+        items: {
+          type: 'object',
+          properties: {
+            address: { type: 'string' },
+            city: { type: 'string' },
+            state: { type: 'string'},
+            detail: { type: "string" }
+          },
+        },
+      },
+      subscriptions: {
+        type: "array",
+        items: {
+          type: 'object',
+          properties: {
+            productCode: { type: 'string' },
+            productCustomerId: { type: 'string' },
+            status: {
+              type: 'string',
+              enum: Object.values(SubscriptionStatus),
+            },
+            scores: {
+              type: "array",
+              items: {
+                type: 'object',
+                properties: {
+                  score: { type: 'number' },
+                  status: { type: 'string', enum: Object.values(Scoretatus) },
+                  features: { type: 'object' },
+                  createdAt: { type: "string", format: "date-time" },
+                  updatedAt: { type: "string", format: "date-time" },
+                },
+              },
+            }
+          },
+        },
+      },
+    },
+  },
+  response: {
+    200: {
+      type: "object",
+      properties: {
+        ...schemaResponse({
+          ...customerSchema.properties,
+        }),
+      },
+    }
+  },
+  tags: ["customer"],
+};
+
+
+console.log(JSON.stringify(createSchema))

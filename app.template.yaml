@@ -1,0 +1,8 @@
+runtime: nodejs16
+service: customer-base
+env: standard
+instance_class: B4
+manual_scaling:
+  instances: 1
+vpc_access_connector:
+  name: projects/gc-k-gbl-nw-host-standard/locations/us-central1/connectors/mongo-connector

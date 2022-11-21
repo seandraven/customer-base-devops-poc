@@ -1,0 +1,15 @@
+# Dependencies Directory
+/node_modules/
+
+#Output build javascript files
+/build/
+
+#Coverage report
+/coverage/
+/.nyc_output/
+
+# dotenv variables
+.env*
+
+# vscode settings
+.vscode
