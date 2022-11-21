@@ -5,6 +5,7 @@ import FindController from "../controllers/find.controller";
 import InfoController from "../controllers/info.controller";
 import UpdateController from "../controllers/update.controller";
 import { createSchema } from "./schemas/create.schema";
+import { deleteSchema } from "./schemas/delete.schema";
 import { infoSchema } from "./schemas/info.schema";
 
 export default class PrincipalRoutes {
@@ -30,7 +31,7 @@ export default class PrincipalRoutes {
     );
     server.delete(
       "/customer.delete",
-      { schema: infoSchema },
+      { schema: deleteSchema },
       this.deleteController.handle
     );
     server.get(
@@ -48,6 +49,5 @@ export default class PrincipalRoutes {
       { schema: infoSchema },
       this.updateController.handle
     );
-    
   }
 }

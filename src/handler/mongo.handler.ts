@@ -1,3 +1,4 @@
+import { BusinessError } from "../infra/error/validation.error";
 import { LogData, logger } from "../infra/logging/logging";
 import { ICustomerEntity } from "./schemas/customer.interface";
 import { Customer } from "./schemas/customer.model";
@@ -12,7 +13,8 @@ export class MongoHandler {
 
   delete = async (id: string): Promise<void> => {
     logger.debug(new LogData("MongoHandler",{id}), `delete`);
-    await Customer.findByIdAndDelete({ _id: id });
+    const response = await Customer.findByIdAndDelete({ _id: id });
+    if(!response) throw new BusinessError(`Customer with id=${id} not foud`);
   };
 
   find = async(customer: ICustomerEntity): Promise<ICustomerEntity> => {
