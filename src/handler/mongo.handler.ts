@@ -19,12 +19,18 @@ export class MongoHandler {
 
   find = async(customer: ICustomerEntity): Promise<ICustomerEntity> => {
     logger.debug(new LogData("MongoHandler",{customer}), `find`);
-    return await Customer.findOne({$or: [{ 'nidType': customer.nidType, 'nid': customer.nid }, {'keoId': customer.keoId }]});
+    const response = await Customer.findOne(customer);
+    if(!response) throw new BusinessError(`Customer with filter=${JSON.stringify(customer)} not foud`);
+    return response;
   }
 
   info = async(id: string): Promise<ICustomerEntity> => {
-    logger.debug(new LogData("MongoHandler",{id}), `info`);
-    return await Customer.findById(id)
+    try{
+      logger.debug(new LogData("MongoHandler",{id}), `info`);
+      return await Customer.findById(id);
+    }catch(error){
+      throw new BusinessError(`Customer with id=${id} not foud 2 `);
+    }
   }
 
   update = async (customer: ICustomerEntity): Promise<ICustomerEntity> => {
