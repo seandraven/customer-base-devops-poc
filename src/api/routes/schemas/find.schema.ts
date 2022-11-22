@@ -1,6 +1,6 @@
-import { schemaResponse } from "./response.schema";
 import { customerSchema } from "./customer.schema";
 import { CustomerStatus, CustomerType, Scoretatus, SubscriptionStatus } from "../../../domain/enum/customer.enum";
+import { schemaResponseList } from "./response-list.schema";
 
 export const findSchema = {
   body: {
@@ -75,7 +75,7 @@ export const findSchema = {
     200: {
       type: "object",
       properties: {
-        ...schemaResponse({
+        ...schemaResponseList({
           ...customerSchema.properties,
         }),
       },

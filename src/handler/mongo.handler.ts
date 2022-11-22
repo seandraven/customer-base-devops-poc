@@ -17,9 +17,9 @@ export class MongoHandler {
     if(!response) throw new BusinessError(`Customer with id=${id} not foud`);
   };
 
-  find = async(customer: ICustomerEntity): Promise<ICustomerEntity> => {
+  find = async(customer: ICustomerEntity): Promise<ICustomerEntity[]> => {
     logger.debug(new LogData("MongoHandler",{customer}), `find`);
-    const response = await Customer.findOne(customer);
+    const response = await Customer.find(customer);
     if(!response) throw new BusinessError(`Customer with filter=${JSON.stringify(customer)} not foud`);
     return response;
   }

@@ -4,16 +4,13 @@ export const openApiConfig: FastifyRegisterOptions<any> = {
   openapi: {
     info: {
       version: "0.0.1",
-      title: "BPM product",
-      description: "BPM product core",
+      title: "Customer Base",
+      description: "Customer base",
     },
     servers: [
       {
         url: "http://localhost:4002/",
       },
-      {
-        url: "http://test-1z03lbm8ob1xs.apigateway.gc-k-gbl-lab.cloud.goog",
-      }
     ],
     
   },

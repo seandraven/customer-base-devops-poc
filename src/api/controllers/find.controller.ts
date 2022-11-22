@@ -8,7 +8,7 @@ export default class FindController extends BaseController {
   
   handle = async (req: FastifyRequest, res: FastifyReply) => {
     const handler = new MongoHandler();
-    await this.executionAPI<Result<ICustomerEntity>>(
+    await this.executionAPI<Result<ICustomerEntity[]>>(
       req,
       res,
       async () => {
@@ -16,7 +16,7 @@ export default class FindController extends BaseController {
         const customer = <ICustomerEntity>req.body;
         const result = await handler.find(customer);
 
-        const response = new Result<ICustomerEntity>();
+        const response = new Result<ICustomerEntity[]>();
         response.setResponse(result, 201);
         return response;
 

@@ -20,10 +20,8 @@ export class Result<T> {
     this.statuscode = code;
     this.count = count
       ? count
-      : this.data && this.data["length"]
-      ? this.data["length"]
       : data != null
-      ? 1
+      ? this.data["length"]
       : 0;
     this.errors = errors || undefined;
   }
