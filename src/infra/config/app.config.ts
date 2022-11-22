@@ -13,7 +13,7 @@ const {
   } = process.env;
 
 export const appConfig = {
-  name: "CUSTOMER_CORE",
+  name: "CUSTOMER_BASE",
   docDB: {
     name: DB_MONGO_DATABASE || "database",
     host: DB_MONGO_HOST || "localhost",
