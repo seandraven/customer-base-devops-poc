@@ -10,6 +10,9 @@ export const schemaResponseList = (properties: { [key: string]: any }) => {
     count: {
       type: "integer",
     },
+    totalRecords: {
+      type: "integer",
+    },
     data: {
       type: "array",
       items: {

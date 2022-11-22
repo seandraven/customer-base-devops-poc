@@ -4,6 +4,7 @@ export class Result<T> {
   statuscode = 0;
   timestamp: string;
   count: number;
+  totalRecords: number;
   errors?: string[];
 
   constructor() {
@@ -11,18 +12,18 @@ export class Result<T> {
     this.message = null;
     this.timestamp = Date.now().toLocaleString();
     this.count = 0;
+    this.totalRecords = null;
     this.errors = undefined;
   }
 
-  public setResponse(data: T, code: number, message?: string, count?: number, errors?: string[]) {
+  public setResponse(data: T, code: number, message?: string, totalRecords?: number, errors?: string[]) {
     this.data = data;
     this.message = message;
     this.statuscode = code;
-    this.count = count
-      ? count
-      : data != null
+    this.count = data != null
       ? this.data["length"]
       : 0;
+    this.totalRecords = totalRecords || 0;
     this.errors = errors || undefined;
   }
 }

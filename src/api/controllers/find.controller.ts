@@ -3,6 +3,7 @@ import { BaseController } from "./base/base.controller";
 import { Result } from "./base/result";
 import { MongoHandler } from "../../handler/mongo.handler";
 import { ICustomerEntity } from "../../handler/schemas/customer.interface";
+import { appConfig } from "../../infra/config/app.config";
 
 export default class FindController extends BaseController {
   
@@ -14,10 +15,13 @@ export default class FindController extends BaseController {
       async () => {
 
         const customer = <ICustomerEntity>req.body;
-        const result = await handler.find(customer);
-
+        const page = req.body['page'] || 0;
+        const limit = req.body['limit'] || appConfig.docDB.pageSize;
+        const totalRecords = await handler.count(customer);
+        const result = await handler.find(customer, page, limit);
+        
         const response = new Result<ICustomerEntity[]>();
-        response.setResponse(result, 201);
+        response.setResponse(result, 201, null, totalRecords);
         return response;
 
       }

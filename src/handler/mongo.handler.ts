@@ -17,11 +17,9 @@ export class MongoHandler {
     if(!response) throw new BusinessError(`Customer with id=${id} not foud`);
   };
 
-  find = async(customer: ICustomerEntity): Promise<ICustomerEntity[]> => {
+  find = async(customer: ICustomerEntity, page: number, limit: number): Promise<ICustomerEntity[]> => {
     logger.debug(new LogData("MongoHandler",{customer}), `find`);
-    const response = await Customer.find(customer);
-    if(!response) throw new BusinessError(`Customer with filter=${JSON.stringify(customer)} not foud`);
-    return response;
+    return await Customer.find(customer).skip(page*limit).limit(limit);
   }
 
   info = async(id: string): Promise<ICustomerEntity> => {
@@ -40,5 +38,10 @@ export class MongoHandler {
     if(!response) throw new BusinessError(`Customer with id=${customer["_id"]} not foud`);
     return response;
   };
+
+  count = async(customer: ICustomerEntity): Promise<number> => {
+    logger.debug(new LogData("MongoHandler",{customer}), `count`);
+    return await Customer.find(customer).count();
+  }
 
 }

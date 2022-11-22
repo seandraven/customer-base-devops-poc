@@ -9,6 +9,7 @@ const {
     DB_MONGO_PASSWORD,
     DB_MONGO_DATABASE,
     DB_MONGO_PROTOCOL,
+    PAGE_SIZE_DEFAULT,
   } = process.env;
 
 export const appConfig = {
@@ -20,6 +21,7 @@ export const appConfig = {
     user: DB_MONGO_USER || "",
     password: DB_MONGO_PASSWORD || "",
     protocol: DB_MONGO_PROTOCOL || "mongodb",
+    pageSize: Number(PAGE_SIZE_DEFAULT) || 10,
   },
   server: {
     port: PORT ? Number(PORT) : 4000,
