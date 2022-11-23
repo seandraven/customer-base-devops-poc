@@ -1,9 +1,7 @@
-import { Scoretatus } from "../../../domain/enum/customer.enum";
+import { ScoreStatus } from "../../../domain/enum/customer.enum";
 
 export interface ScoreVo {
-  score: number;
-  status: Scoretatus;
+  amountUsd: number;
+  status: ScoreStatus;
   features: string;
-  createdAt: Date;
-  updatedAt: Date;
 }

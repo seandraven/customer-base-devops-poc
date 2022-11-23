@@ -9,7 +9,12 @@ export const customerSchema = new Schema<ICustomerEntity>({
   status: { type: String, required: true },
   type: { type: String, required: true },
   locations: { type: [] },
-  subscriptions: { type: [] },
+  financials: { type: [] },
+  aggrements: { type: [] },
+  owners: { type: [] },
+  residues: { type: [] },
+  scores: { type: [] },
+  stageInstances: { type: [] },
   createdAt: { type: Date },
   updatedAt: { type: Date },
 });

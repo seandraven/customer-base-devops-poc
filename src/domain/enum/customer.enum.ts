@@ -8,12 +8,22 @@ export enum CustomerType {
     Customer = 'Customer'
 }
 
-export enum SubscriptionStatus {
+export enum ScoreStatus {
     Active = 'Active',
     Inactive = 'Inactive'
 }
 
-export enum Scoretatus {
+export enum ResidueType {
+    Active = 'Active',
+    Inactive = 'Inactive'
+}
+
+export enum ResidueStatus {
+    Active = 'Active',
+    Inactive = 'Inactive'
+}
+
+export enum AggrementStatus {
     Active = 'Active',
     Inactive = 'Inactive'
 }
