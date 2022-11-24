@@ -1,7 +1,8 @@
-import { Schema } from "mongoose";
+import mongoose from 'mongoose';
 import { ICustomerEntity } from "./customer.interface";
+import MongooseHistoryPlugin from 'mongoose-history-plugin';
 
-export const customerSchema = new Schema<ICustomerEntity>({
+const customerSchema = new mongoose.Schema<ICustomerEntity>({
   keoId: { type: String, required: true },
   name: { type: String, required: true },
   nidType: { type: String, required: true },
@@ -17,4 +18,13 @@ export const customerSchema = new Schema<ICustomerEntity>({
   stageInstances: { type: [] },
   createdAt: { type: Date },
   updatedAt: { type: Date },
-});
+}, { versionKey: false });
+
+let options = {
+  mongoose: mongoose,
+  modelName: '_history-customers',
+};
+
+customerSchema.plugin(MongooseHistoryPlugin(options));
+
+export { customerSchema };

@@ -28,6 +28,7 @@
     "dotenv": "^16.0.3",
     "fastify": "^4.7.0",
     "mongoose": "^6.7.2",
+    "mongoose-history-plugin": "^3.0.1",
     "pino": "^8.6.1",
     "ramda": "^0.28.0",
     "reflect-metadata": "^0.1.13",

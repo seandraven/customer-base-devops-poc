@@ -32,11 +32,19 @@ export class MongoHandler {
   }
 
   update = async (customer: ICustomerEntity): Promise<ICustomerEntity> => {
-    customer.updatedAt =new Date();
     logger.debug(new LogData("MongoHandler",{customer}), `update`);
-    const response = await Customer.findByIdAndUpdate({ _id: customer["_id"]}, customer, {new: true});
-    if(!response) throw new BusinessError(`Customer with id=${customer["_id"]} not foud`);
-    return response;
+    let customerFind;
+    try{
+      customerFind = await Customer.findById(customer["_id"]);
+    }catch(error){
+      throw new BusinessError(`Customer with id=${customer["_id"]} not foud`);
+    }  
+    
+    Object.entries(customer).forEach(([key, value]) => {
+      if(key !== '_id') customerFind[key] = value;
+    });
+    customerFind.updatedAt = new Date();
+    return await customerFind.save();
   };
 
   count = async(customer: ICustomerEntity): Promise<number> => {
