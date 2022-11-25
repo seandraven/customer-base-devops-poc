@@ -16,13 +16,17 @@ export class Result<T> {
     this.errors = undefined;
   }
 
-  public setResponse(data: T, code: number, message?: string, totalRecords?: number, errors?: string[]) {
+  public setResponse(
+    data: T,
+    code: number,
+    message?: string,
+    totalRecords?: number,
+    errors?: string[]
+  ) {
     this.data = data;
     this.message = message;
     this.statuscode = code;
-    this.count = data != null
-      ? this.data["length"]
-      : 0;
+    this.count = data != null ? this.data["length"] : 0;
     this.totalRecords = totalRecords || 0;
     this.errors = errors || undefined;
   }

@@ -19,8 +19,8 @@ export const schemaResponse = (properties: { [key: string]: any }) => {
     errors: {
       type: "array",
       items: {
-        type: "object"
-      }
-    }
+        type: "object",
+      },
+    },
   };
 };

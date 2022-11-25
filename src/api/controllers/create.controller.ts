@@ -5,22 +5,15 @@ import { MongoHandler } from "../../handler/mongo.handler";
 import { ICustomerEntity } from "../../handler/schemas/customer.interface";
 
 export default class CreateController extends BaseController {
-  
   handle = async (req: FastifyRequest, res: FastifyReply) => {
     const handler = new MongoHandler();
-    await this.executionAPI<Result<ICustomerEntity>>(
-      req,
-      res,
-      async () => {
+    await this.executionAPI<Result<ICustomerEntity>>(req, res, async () => {
+      const customer = <ICustomerEntity>req.body;
+      const result = await handler.create(customer);
 
-        const customer = <ICustomerEntity>req.body;
-        const result = await handler.create(customer);
-
-        const response = new Result<ICustomerEntity>();
-        response.setResponse(result, 201);
-        return response;
-
-      }
-    );
+      const response = new Result<ICustomerEntity>();
+      response.setResponse(result, 201);
+      return response;
+    });
   };
 }

@@ -9,5 +9,4 @@ export interface FinancialVo {
   utility: number;
   accountsReceivable: number;
   debtsToPay: number;
-
 }

@@ -1,9 +1,8 @@
-import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
+import { SecretManagerServiceClient } from "@google-cloud/secret-manager";
 
 const client = new SecretManagerServiceClient();
 
 export default class GCPSecret {
-  
   async getSecret(name: string): Promise<any> {
     const projectId = process.env.GOOGLE_CLOUD_PROJECT;
     const secretName = `projects/${projectId}/secrets/${name}/versions/latest`;
@@ -13,5 +12,4 @@ export default class GCPSecret {
     const secret = secretVersion.payload.data.toString();
     return secret;
   }
-
 }

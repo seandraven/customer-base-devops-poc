@@ -3,8 +3,8 @@ stages:
 
 variables:
   DEPLOY_ENVIRONMENT:
-    value: 'development'
-    description: 'The deployment target.Change to qa o production'
+    value: "development"
+    description: "The deployment target.Change to qa o production"
 
 deploy:
   image: plcom/gcloud-node

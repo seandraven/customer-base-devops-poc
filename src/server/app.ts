@@ -11,7 +11,7 @@ export class App {
     this.server.listen();
   }
 
-  async close(): Promise<void>{
-    await this.server.close()
+  async close(): Promise<void> {
+    await this.server.close();
   }
 }

@@ -3,11 +3,11 @@ import { customerSchema } from "./customer.schema";
 
 export const infoSchema = {
   query: {
-    type: 'object',
-    required: ['id'],
+    type: "object",
+    required: ["id"],
     properties: {
       id: {
-        type: 'string',
+        type: "string",
       },
     },
   },

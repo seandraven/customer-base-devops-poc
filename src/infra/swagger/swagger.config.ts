@@ -12,7 +12,6 @@ export const openApiConfig: FastifyRegisterOptions<any> = {
         url: "http://localhost:4002/",
       },
     ],
-    
   },
   exposeRoute: true,
 };

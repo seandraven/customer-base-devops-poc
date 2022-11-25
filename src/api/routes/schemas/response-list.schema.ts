@@ -16,17 +16,17 @@ export const schemaResponseList = (properties: { [key: string]: any }) => {
     data: {
       type: "array",
       items: {
-        type: 'object',
+        type: "object",
         properties: {
           ...properties,
         },
-      }
+      },
     },
     errors: {
       type: "array",
       items: {
-        type: "object"
-      }
-    }
+        type: "object",
+      },
+    },
   };
 };

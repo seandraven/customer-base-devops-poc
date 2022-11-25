@@ -8,7 +8,7 @@ import { ScoreVo } from "./vo/score";
 import { StageInstanceVo } from "./vo/stageInstance";
 
 export interface ICustomerEntity {
-  _id?: string,
+  _id?: string;
   keoId: string;
   nidType: string;
   nid: string;

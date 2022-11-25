@@ -2,7 +2,7 @@ import Fastify, { FastifyInstance } from "fastify";
 import cors from "@fastify/cors";
 import multipart from "@fastify/multipart";
 import fastifySwagger from "@fastify/swagger";
-import { pipe } from "ramda"
+import { pipe } from "ramda";
 import { logger } from "../infra/logging/logging";
 import { openApiConfig } from "../infra/swagger/swagger.config";
 import PrincipalRoutes from "../api/routes/index.route";
@@ -51,7 +51,7 @@ export default class Server {
   private start = async (server: FastifyInstance): Promise<void> => {
     try {
       this.server = server;
-      await server.listen({port: this.port});
+      await server.listen({ port: this.port });
     } catch (err) {
       this.handleServerError(err);
     }

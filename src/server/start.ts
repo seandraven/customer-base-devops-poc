@@ -2,7 +2,7 @@ import { App } from "./app";
 
 try {
   const appInstance = new App();
-  appInstance.start()
+  appInstance.start();
 } catch (e) {
   console.log(e);
   process.exit(1);
