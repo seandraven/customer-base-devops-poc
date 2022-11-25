@@ -1,5 +1,4 @@
 runtime: nodejs16
-service: customer-base
 env: standard
 instance_class: B4
 manual_scaling:
