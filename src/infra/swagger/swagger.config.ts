@@ -9,7 +9,10 @@ export const openApiConfig: FastifyRegisterOptions<any> = {
     },
     servers: [
       {
-        url: "http://localhost:4002/",
+        url: "http://localhost:4010/",
+      },
+      {
+        url: "https://gc-k-gbl-bricks-dev.uc.r.appspot.com/",
       },
     ],
   },
