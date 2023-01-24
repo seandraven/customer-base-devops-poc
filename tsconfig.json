@@ -2,7 +2,7 @@
   "compilerOptions": {
     "skipLibCheck": true,
     "module": "commonjs",
-    "types": ["reflect-metadata", "node"],
+    "types": ["reflect-metadata", "node", "jest", "mocha"],
     "esModuleInterop": true,
     "target": "es2017",
     "lib": ["es6"],

@@ -1,10 +1,47 @@
 stages:
+  - start
+  - test
   - deploy
 
 variables:
   DEPLOY_ENVIRONMENT:
-    value: "development"
-    description: "The deployment target.Change to qa o production"
+    value: 'development'
+    description: 'The deployment target.Change to qa o production'
+  SKIP_TEST:
+    value: 'false'
+    description: 'To skip test, change to true'
+
+start:
+  stage: start
+  tags:
+    - docker-keo-runner
+  script:
+    - echo "Start pipeline"
+  rules:
+    - when: manual
+
+coverage-test:
+  image: node:16.17.0
+  stage: test
+  tags:
+    - docker-keo-runner
+  environment: $DEPLOY_ENVIRONMENT
+  script:
+    - npm install
+    - npm run coverage
+    - npm run coverage-gitlab
+    - echo "Finish coverage review successfully"
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  rules:
+    - if: $SKIP_TEST == "true"
+      when: never
+    - if: $SKIP_TEST == "false"
+      when: always
 
 deploy:
   image: plcom/gcloud-node
@@ -16,5 +53,3 @@ deploy:
     - npx gae-ayaml-env
     - gcloud auth activate-service-account --key-file $GOOGLE_SERVICE_ACCOUNT_FILE
     - gcloud app deploy app.yaml --quiet --project $GOOGLE_PROJECT_ID --version 1
-  rules:
-    - when: manual
