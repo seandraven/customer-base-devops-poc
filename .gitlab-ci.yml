@@ -30,7 +30,7 @@ coverage-test:
     - npm install
     - npm run coverage
     - npm run coverage-gitlab
-    - echo "Finish coverage review successfully"
+    - echo "Finish coverage review successfully!!"
   artifacts:
     reports:
       coverage_report:
