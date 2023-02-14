@@ -17,8 +17,8 @@ start:
     - docker-keo-runner
   script:
     - echo "Start pipeline"
-  rules:
-    - when: manual
+  #rules:
+    #- when: manual
 
 coverage-test:
   image: node:16.17.0
